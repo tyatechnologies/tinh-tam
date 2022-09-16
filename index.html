@@ -1,148 +1,167 @@
 <html lang="en" itemtype="http://schema.org/WebPage">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" type="image/x-icon" href="./Icon.png" />
+    <title>Tịnh Tâm</title>
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="icon" type="image/x-icon" href="./tungkinh.png">
-  <title>Tịnh Tâm</title>
-</head>
-
-<body>
-  <div style="position: absolute; width: 1px; height: 1px; z-index: 1; left: -100px; top: -200px" id="layer1"><img
-      src="./src/khoi.png">
-  </div>
-
-
-  <link href="./src/bootstrap.min.css" rel="stylesheet">
-
-
-
-
-
-
-  <div class="container" style="max-width: 100%; max-height: 90%; min-width: 80%; min-height: 90%;">
-
-
-
-    <style>
-      body {
-        margin-top: 10;
-        width: 100%;
-        height: 60%;
-        background-color: dimgrey;
-      }
-
-      canvas {
+  <body>
+    <div
+      style="
         position: absolute;
-      }
-    </style>
-
-
-    <div style="margin-left: 45.5%;">
-      <canvas id="canvas" style="top: 36%; left: 47%;height:550; width:100;"></canvas>
+        width: 1px;
+        height: 1px;
+        z-index: 1;
+        left: -100px;
+        top: -200px;
+      "
+      id="layer1"
+    >
+      <img src="./src/khoi.png" />
     </div>
-    <script src="./src/1.js"></script>
-    <img id="top" style="width: 100%;" src="./src/top.jpg">
-    <img id="scen1" style="width: 100%;" src="./src/Scene1_.jpg" style="transition: opacity 1s">
 
-    <img id="btnDacDao" onclick="location = './dacdao.html'" src="./dacdao.png"
-      style="margin-left: 21%; margin-top: 10; height: 11%;border-radius: 1em;">
+    <link href="./src/bootstrap.min.css" rel="stylesheet" />
 
-    <img id="btnTungKinh" src="./tungkinh.png"
-      style="position: fixed; left: 48%; bottom: 2.5%; height: 4.6em;; z-index: 500;">
+    <div
+      class="container"
+      style="max-width: 100%; max-height: 90%; min-width: 80%; min-height: 90%"
+    >
+      <style>
+        body {
+          margin-top: 10;
+          width: 100%;
+          height: 60%;
+          background-color: dimgrey;
+        }
 
-    <img id="btnCungDuong" src="./cungduong.png" onclick="location = './cungduong.html'"
-      style="margin-left: 40%; margin-top: 10; height: 11%; border-radius: 1em;">
+        canvas {
+          position: absolute;
+        }
+      </style>
 
+      <div style="margin-left: 45.5%">
+        <canvas
+          id="canvas"
+          style="top: 36%; left: 47%; height: 550; width: 100"
+        ></canvas>
+      </div>
+      <script src="./src/1.js"></script>
+      <img id="top" style="width: 100%" src="./src/top.jpg" />
+      <img
+        id="scen1"
+        style="width: 100%"
+        src="./src/Scene1_.jpg"
+        style="transition: opacity 1s"
+      />
 
+      <img
+        id="btnDacDao"
+        onclick="location = './dacdao.html'"
+        src="./dacdao.png"
+        style="
+          margin-left: 21%;
+          margin-top: 10;
+          height: 11%;
+          border-radius: 1em;
+        "
+      />
 
-    <style>
-      #btnTungKinh,
-      #btnDacDao,
-      #btnCungDuong {
-        opacity: 0.8;
+      <img
+        id="btnTungKinh"
+        src="./tungkinh.png"
+        style="
+          position: fixed;
+          left: 48%;
+          bottom: 2.5%;
+          height: 4.6em;
+          z-index: 500;
+        "
+      />
+
+      <img
+        id="btnCungDuong"
+        src="./cungduong.png"
+        onclick="location = './cungduong.html'"
+        style="
+          margin-left: 40%;
+          margin-top: 10;
+          height: 11%;
+          border-radius: 1em;
+        "
+      />
+
+      <style>
+        #btnTungKinh,
+        #btnDacDao,
+        #btnCungDuong {
+          opacity: 0.8;
+        }
+
+        #btnTungKinh:hover,
+        #btnDacDao:hover,
+        #btnCungDuong:hover {
+          opacity: 1;
+        }
+      </style>
+    </div>
+
+    <script>
+      setTimeout(() => alert("bấm vô Chú Tiểu để (bật/tắt)  tụng kinh"), 2500);
+
+      let musicIdx = 0;
+      let musicArr = [
+        new Audio("https://github.com/tyatechnologies/tinh-tam/releases/download/thu-vien/b3.mp3"),
+        new Audio("https://github.com/tyatechnologies/tinh-tam/releases/download/thu-vien/b5.mp3"),
+        new Audio("https://github.com/tyatechnologies/tinh-tam/releases/download/thu-vien/b2.mp3"),
+        new Audio("https://github.com/tyatechnologies/tinh-tam/releases/download/thu-vien/b1.mp3"),
+        new Audio("https://github.com/tyatechnologies/tinh-tam/releases/download/thu-vien/b4.mp3"),
+      ];
+
+      let body = document.getElementsByTagName("BODY")[0];
+      let myAudio = musicArr[musicIdx];
+      let isOnAudio = false;
+
+      let btnDacDao = document.getElementById("btnDacDao");
+      let btnCungDuong = document.getElementById("btnCungDuong");
+      function hideDacDaoCungDuong() {
+        btnCungDuong.style.display = "none";
+        btnDacDao.style.display = "none";
+      }
+      function showDacDaoCungDuong() {
+        btnCungDuong.style.display = "inline";
+        btnDacDao.style.display = "inline";
       }
 
-      #btnTungKinh:hover,
-      #btnDacDao:hover,
-      #btnCungDuong:hover {
-        opacity: 1;
-      }
-    </style>
-  </div>
-
-
-
-
-  <script>
-
-    setTimeout(() => alert("bấm vô Chú Tiểu để (bật/tắt)  tụng kinh"), 2500);
-
-
-    let musicIdx = 0;
-    let musicArr = [
-      new Audio("/music/b3.mp3"),
-      new Audio("/music/b5.mp3"),
-      new Audio("/music/b2.mp3"),
-      new Audio("/music/b1.mp3"),
-      new Audio("/music/b4.mp3")      
-    ];
-
-
-    let body = document.getElementsByTagName("BODY")[0];
-    let myAudio = musicArr[musicIdx];
-    let isOnAudio = false;
-
-    let btnDacDao = document.getElementById("btnDacDao");
-    let btnCungDuong = document.getElementById("btnCungDuong");
-    function hideDacDaoCungDuong() {
-      btnCungDuong.style.display = "none";
-      btnDacDao.style.display = "none";
-    }
-    function showDacDaoCungDuong() {
-      btnCungDuong.style.display = "inline";
-      btnDacDao.style.display = "inline";
-    }
-
-    document.getElementById("btnTungKinh").onclick = () => {
-      isOnAudio = !isOnAudio;
-      if (isOnAudio) {
-        body.webkitRequestFullscreen();
-        scen1.src = "./src/Scene3.jpg";
-        document.getElementById("top").style.display = "none";
-        hideDacDaoCungDuong();
-
-        if (musicIdx > musicArr.length) musicIdx = 0;
-        myAudio = musicArr[musicIdx++];
-        myAudio.play();
-        myAudio.addEventListener("ended", () => {
-          myAudio.currentTime = 0;
-          myAudio.pause();
+      document.getElementById("btnTungKinh").onclick = () => {
+        isOnAudio = !isOnAudio;
+        if (isOnAudio) {
+          body.webkitRequestFullscreen();
+          scen1.src = "./src/Scene3.jpg";
+          document.getElementById("top").style.display = "none";
+          hideDacDaoCungDuong();
 
           if (musicIdx > musicArr.length) musicIdx = 0;
           myAudio = musicArr[musicIdx++];
           myAudio.play();
-          isOnAudio = true;
-        })
-      } else {
-        myAudio.pause();
-        myAudio.currentTime = 0;
-        document.webkitExitFullscreen();
-        scen1.src = "./src/Scene1_.jpg";
-        document.getElementById("top").style.display = "block";
+          myAudio.addEventListener("ended", () => {
+            myAudio.currentTime = 0;
+            myAudio.pause();
 
+            if (musicIdx > musicArr.length) musicIdx = 0;
+            myAudio = musicArr[musicIdx++];
+            myAudio.play();
+            isOnAudio = true;
+          });
+        } else {
+          myAudio.pause();
+          myAudio.currentTime = 0;
+          document.webkitExitFullscreen();
+          scen1.src = "./src/Scene1_.jpg";
+          document.getElementById("top").style.display = "block";
 
-        showDacDaoCungDuong();
-      }
-    }
-
-
-
-
-
-  </script>
-
-
-
-</body>
-
+          showDacDaoCungDuong();
+        }
+      };
+    </script>
+  </body>
 </html>
